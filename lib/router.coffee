@@ -6,3 +6,7 @@ Router.configure
 
 Router.map ->
   @route 'postsList', path: '/'
+  @route 'postPage', 
+    path: '/posts/:_id'
+    data: ->
+      return Posts.findOne this.params._id

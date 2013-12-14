@@ -1,3 +1,5 @@
 Meteor.publish 'posts', ->
-  return Posts.find()
+  Posts.find()
 
+Meteor.publish 'comments', ->
+  Comments.find()

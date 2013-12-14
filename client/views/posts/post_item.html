@@ -3,10 +3,9 @@
   <div class="post-content">
     <h3> <a href="{{url}}"> {{title}} </a> <span>{{domain}}</span> </h3>
     <p>
-      submitted by {{author}}
-      {{#if ownPost}}
-      <a href="{{pathFor 'postEdit'}}">Edit</a>
-      {{/if}}
+      submitted by {{author}},
+      <a href="{{pathFor 'postPage'}}">{{commentsCount}} comments</a>
+      {{#if ownPost}} <a href="{{pathFor 'postEdit'}}">Edit</a> {{/if}}
   </div>
   <a href="{{pathFor 'postPage'}}" class="btn pull-right">Discuss</a>
 </div>

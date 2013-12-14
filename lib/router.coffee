@@ -43,7 +43,9 @@ Router.map ->
     data: ->
       Posts.findOne @params._id
 
-  @route 'postSubmit', path: '/submit'
+  @route 'postSubmit',
+    path: '/submit'
+    disableProgress: true
 
 requireLogin = ->
   unless Meteor.user()

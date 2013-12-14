@@ -9,3 +9,4 @@ preserve-inputs
 bootstrap
 coffeescript
 iron-router
+spin

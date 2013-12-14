@@ -4,22 +4,27 @@ Router.configure
   waitOn: ->
     [Meteor.subscribe('notifications')]
 
-PostsListController = RouteController.extend
-  template: 'postsList'
+PostsListController = RouteController.extend(
+  template: "postsList"
   increment: 5
   limit: ->
-    parseInt(@params.postLimit) or @increment
+    parseInt(@params.postsLimit) or @increment
 
   findOptions: ->
     sort:
       submitted: -1
+      _id: -1
+
     limit: @limit()
 
   waitOn: ->
-    Meteor.subscribe 'posts', @findOptions()
+    Meteor.subscribe "posts", @findOptions()
 
   data: ->
-    posts: Posts.find {}, @findOptions()
+    posts: Posts.find({}, @findOptions())
+    nextPath: @route.path(postsLimit: @limit() + @increment)
+)
+
 
 
 Router.map ->

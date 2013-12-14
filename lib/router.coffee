@@ -1,12 +1,12 @@
-Router.configure 
+Router.configure
   layoutTemplate: 'layout'
   loadingTemplate: 'loading'
-  waitOn: -> 
+  waitOn: ->
     Meteor.subscribe('posts')
 
 Router.map ->
   @route 'postsList', path: '/'
-  @route 'postPage', 
+  @route 'postPage',
     path: '/posts/:_id'
     data: ->
       Posts.findOne @params._id
@@ -27,3 +27,5 @@ requireLogin = ->
     
 
 Router.before requireLogin, only: 'postSubmit'
+Router.before ->
+  clearErrors()

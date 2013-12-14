@@ -11,3 +11,10 @@ Router.map ->
     data: ->
       return Posts.findOne this.params._id
   @route 'postSubmit', path: '/submit'
+
+requireLogin = ->
+  if !Meteor.user()
+    this.render 'accessDenied'
+    this.stop()
+
+Router.before requireLogin, only: 'postSubmit'

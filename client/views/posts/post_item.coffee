@@ -26,6 +26,9 @@ Template.postItem.rendered = ->
   # if element has a currentPosition (i.e. it's not the first ever render)
   if typeof (instance.currentPosition) isnt "undefined"
     previousPosition = instance.currentPosition
+  else
+    # it's the first ever render, so hide the element
+    $this.addClass "invisible"
     
     # calculate difference between old position and new position and send element there
     delta = previousPosition - newPosition
@@ -36,7 +39,7 @@ Template.postItem.rendered = ->
     instance.currentPosition = newPosition
     
     # bring element back to its new original position
-    $this.css "top", "0px"
+    $this.css("top", "0px").removeClass("invisible")
 
 
 Template.postItem.events "click .upvotable": (e) ->

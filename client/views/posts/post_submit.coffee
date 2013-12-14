@@ -8,5 +8,9 @@ Template.postSubmit.events
       message: $(e.target).find('[name=message]').val()
    
     Meteor.call 'post', post,  (error, id) ->
-      return alert error.reason if error
-      Router.go 'postPage', _id: id
+      if error
+        throwError error.reason
+        if error.error == 302
+          Router.go 'postPage', _id: error.details
+      else
+        Router.go 'postPage', _id: id
